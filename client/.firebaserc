@@ -1,0 +1,14 @@
+{
+  "projects": {
+    "default": "horse-racer-e2e5b"
+  },
+  "targets": {
+    "horse-racer-e2e5b": {
+      "hosting": {
+        "client": [
+          "horse-racer-e2e5b"
+        ]
+      }
+    }
+  }
+}
