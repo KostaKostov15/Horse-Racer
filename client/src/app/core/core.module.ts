@@ -10,6 +10,7 @@ import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { MatListModule } from '@angular/material/list';
 import { MatIconModule } from '@angular/material/icon';
 import { SidebarComponent } from './sidebar/sidebar.component';
+import { RouterModule } from '@angular/router';
 
 @NgModule({
   declarations: [HeaderComponent, FooterComponent, SidebarComponent],
@@ -21,6 +22,7 @@ import { SidebarComponent } from './sidebar/sidebar.component';
     MatToolbarModule,
     MatIconModule,
     MatListModule,
+    RouterModule,
   ],
   exports: [HeaderComponent, FooterComponent, SidebarComponent],
 })
