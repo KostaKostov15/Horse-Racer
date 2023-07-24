@@ -2,6 +2,7 @@ import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { ThemeService } from '../services/theme.service';
 import { Observable } from 'rxjs';
+import { SidebarService } from '../services/sidebar.service';
 
 @Component({
   selector: 'app-header',
@@ -11,14 +12,23 @@ import { Observable } from 'rxjs';
 export class HeaderComponent implements OnInit {
   toggleTheme: FormControl = new FormControl(false);
   isDarkTheme: Observable<boolean>;
+  isSidebarOpen: Observable<boolean>;
 
-  constructor(private themeService: ThemeService) {}
+  constructor(
+    private themeService: ThemeService,
+    private sidebarService: SidebarService
+  ) {}
 
   ngOnInit(): void {
     this.isDarkTheme = this.themeService.isDarkTheme;
+    this.isSidebarOpen = this.sidebarService.isSidebarOpen;
   }
 
   toggleDarkTheme(checked: boolean): void {
     this.themeService.setDarkTheme(checked);
+  }
+
+  toggleSidebar(): void {
+    this.sidebarService.setSidebarOpen();
   }
 }
