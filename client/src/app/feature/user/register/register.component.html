@@ -1,4 +1,35 @@
-<div class="exmaple-button-row">
-  <p>Alredy registered?</p>
-  <button mat-raised-button color="accent" routerLink="/login">Sign Up</button>
-</div>
+<mat-card class="register-card">
+  <mat-card-title>Register</mat-card-title>
+  <mat-card-content>
+    <form>
+      <div>
+        <mat-form-field>
+          <mat-label>Email</mat-label>
+          <input type="email" matInput />
+        </mat-form-field>
+      </div>
+      <div>
+        <mat-form-field>
+          <mat-label>Username</mat-label>
+          <input type="text" matInput />
+        </mat-form-field>
+      </div>
+      <div>
+        <mat-form-field>
+          <mat-label>Password</mat-label>
+          <input type="password" matInput />
+        </mat-form-field>
+        <mat-form-field>
+          <mat-label>Repeat Password</mat-label>
+          <input type="password" matInput />
+        </mat-form-field>
+      </div>
+      <div class="button">
+        <button type="submit" color="accent" mat-raised-button>Sign Up</button>
+      </div>
+      <p class="auth-message">
+        Alredy registered? <a routerLink="/user/login">Sign In</a>
+      </p>
+    </form>
+  </mat-card-content>
+</mat-card>

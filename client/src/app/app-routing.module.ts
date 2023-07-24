@@ -6,6 +6,11 @@ import { AboutComponent } from './feature/about/about.component';
 const routes: Routes = [
   { path: '', component: HomeComponent },
   { path: 'about', component: AboutComponent },
+  {
+    path: 'user',
+    loadChildren: () =>
+      import('./feature/user/user.module').then((module) => module.UserModule),
+  },
 ];
 
 @NgModule({

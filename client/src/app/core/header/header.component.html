@@ -1,12 +1,13 @@
 <mat-toolbar color="primary">
   <button mat-icon-button>
-    <mat-icon>menu</mat-icon>
+    <mat-icon matTooltip="Menu">menu</mat-icon>
   </button>
 
   <div class="example-spacer"></div>
 
   <mat-icon class="mr-6">brightness_5</mat-icon>
   <mat-slide-toggle
+    matTooltip="Change theme"
     [checked]="isDarkTheme | async"
     (change)="toggleDarkTheme($event.checked)"
     class="mr-6"

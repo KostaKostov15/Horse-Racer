@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { ThemeService } from '../services/theme.service';
 import { Observable } from 'rxjs';
@@ -18,7 +18,7 @@ export class HeaderComponent implements OnInit {
     this.isDarkTheme = this.themeService.isDarkTheme;
   }
 
-  toggleDarkTheme(checked: boolean) {
+  toggleDarkTheme(checked: boolean): void {
     this.themeService.setDarkTheme(checked);
   }
 }

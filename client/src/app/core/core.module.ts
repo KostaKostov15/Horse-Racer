@@ -5,6 +5,7 @@ import { FooterComponent } from './footer/footer.component';
 
 import { ReactiveFormsModule } from '@angular/forms';
 import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { MatListModule } from '@angular/material/list';
@@ -17,6 +18,7 @@ import { RouterModule } from '@angular/router';
   imports: [
     ReactiveFormsModule,
     MatSlideToggleModule,
+    MatTooltipModule,
     CommonModule,
     MatSidenavModule,
     MatToolbarModule,
