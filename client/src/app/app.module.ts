@@ -14,6 +14,9 @@ import { provideAuth, getAuth } from '@angular/fire/auth';
 import { provideFirestore, getFirestore } from '@angular/fire/firestore';
 import { environment } from '../environments/environment';
 
+import { ErrorStateMatcher } from '@angular/material/core';
+import { CustomErrorStateMatcher } from './shared/custom-error-state-matcher';
+
 @NgModule({
   declarations: [AppComponent],
   imports: [
@@ -28,7 +31,12 @@ import { environment } from '../environments/environment';
     provideFirestore(() => getFirestore()),
     AppRoutingModule,
   ],
-  providers: [],
+  providers: [
+    {
+      provide: ErrorStateMatcher,
+      useClass: CustomErrorStateMatcher,
+    },
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

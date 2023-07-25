@@ -53,6 +53,11 @@ export class AuthService {
       .createUserWithEmailAndPassword(email, password)
       .then((result) => {
         this.setUserData(result.user);
+        this.fireAuth.authState.subscribe((user) => {
+          if (user) {
+            this.router.navigate(['/user/login']);
+          }
+        });
       })
       .catch((err) => {
         window.alert(err.message);
@@ -64,7 +69,7 @@ export class AuthService {
     return this.fireAuth.signOut().then(
       () => {
         localStorage.removeItem('user');
-        this.router.navigate(['login']);
+        this.router.navigate(['/user/login']);
       },
       (err) => {
         alert(err.message);
@@ -84,7 +89,8 @@ export class AuthService {
     const userData: User = {
       uid: user.uid,
       email: user.email,
-      username: user.username,
+      displayName: user.displayName,
+      photoURL: user.photoURL,
     };
     return userRef.set(userData, { merge: true });
   }

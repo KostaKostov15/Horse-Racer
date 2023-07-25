@@ -1,21 +1,50 @@
 <mat-card class="login-card">
   <mat-card-title>Login</mat-card-title>
   <mat-card-content>
-    <form>
+    <form (ngSubmit)="login()" [formGroup]="form">
       <div>
         <mat-form-field>
           <mat-label>Email</mat-label>
-          <input type="email" matInput />
+          <input type="email" matInput formControlName="email" />
+          <mat-error *ngIf="form.get('email')?.errors?.['email']"
+            >Please enter a valid email adress</mat-error
+          >
+          <mat-error *ngIf="form.get('email')?.errors?.['required']"
+            >Email is <strong>required</strong></mat-error
+          >
         </mat-form-field>
       </div>
       <div>
         <mat-form-field>
           <mat-label>Password</mat-label>
-          <input type="password" matInput />
+          <input type="password" matInput formControlName="password" />
+          <mat-error
+            *ngIf="
+                form.get('password')?.errors?.['required']
+              "
+            >Password is <strong>required</strong></mat-error
+          >
+          <mat-error
+            *ngIf="
+                form.get('password')?.errors?.['minlength']
+              "
+            >Password length must be at least
+            {{
+                form.get('password')?.errors?.['minlength']?.['requiredLength']
+            }}
+            symbols</mat-error
+          >
         </mat-form-field>
       </div>
       <div class="button">
-        <button type="submit" color="accent" mat-raised-button>Sign In</button>
+        <button
+          type="submit"
+          color="accent"
+          mat-raised-button
+          [disabled]="form.invalid"
+        >
+          Sign In
+        </button>
       </div>
       <div class="button">
         <p class="auth-message">

@@ -14,20 +14,6 @@
           >
         </mat-form-field>
       </div>
-      <div>
-        <mat-form-field>
-          <mat-label>Username</mat-label>
-          <input type="text" formControlName="username" matInput />
-          <mat-error *ngIf="form.get('username')?.errors?.['required']"
-            >Username is <strong>required</strong></mat-error
-          >
-          <mat-error *ngIf="form.get('username')?.errors?.['minlength']"
-            >Username should be at least
-            {{form.get('username')?.errors?.['minlength']?.['requiredLength']}}
-            characters</mat-error
-          >
-        </mat-form-field>
-      </div>
 
       <ng-container formGroupName="passwordGroup">
         <div>
@@ -38,7 +24,7 @@
               *ngIf="
                 form.get('passwordGroup')?.get('password')?.errors?.['required']
               "
-              >Password is required!</mat-error
+              >Password is <strong>required</strong></mat-error
             >
             <mat-error
               *ngIf="
