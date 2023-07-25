@@ -55,7 +55,7 @@ export class AuthService {
         this.setUserData(result.user);
         this.fireAuth.authState.subscribe((user) => {
           if (user) {
-            this.router.navigate(['/user/login']);
+            this.router.navigate(['/']);
           }
         });
       })
@@ -72,7 +72,7 @@ export class AuthService {
         this.router.navigate(['/user/login']);
       },
       (err) => {
-        alert(err.message);
+        window.alert(err.message);
       }
     );
   }

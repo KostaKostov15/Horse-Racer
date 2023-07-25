@@ -8,9 +8,10 @@ import { MatCardModule } from '@angular/material/card';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
+import { ProfileComponent } from './profile/profile.component';
 
 @NgModule({
-  declarations: [LoginComponent, RegisterComponent],
+  declarations: [LoginComponent, RegisterComponent, ProfileComponent],
   imports: [
     ReactiveFormsModule,
     CommonModule,
@@ -21,6 +22,6 @@ import { MatButtonModule } from '@angular/material/button';
     FormsModule,
     UserRoutingModule,
   ],
-  exports: [LoginComponent, RegisterComponent],
+  exports: [LoginComponent, RegisterComponent, ProfileComponent],
 })
 export class UserModule {}

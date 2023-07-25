@@ -1,14 +1,36 @@
 <mat-list role="list" class="sidebar">
-  <a routerLink="/user/login" mat-list-item>
-    <mat-icon>account_circle</mat-icon>
-    <span> Log In</span>
-  </a>
-  <a routerLink="/user/register" mat-list-item>
-    <mat-icon>person_add</mat-icon>
-    <span> Register</span>
-  </a>
-  <a routerLink="/about" mat-list-item>
-    <mat-icon>question_answer</mat-icon>
-    <span> About</span>
-  </a>
+  <!-- Shared Views -->
+  <div>
+    <a routerLink="/" mat-list-item>
+      <mat-icon>home</mat-icon>
+      <span> Home</span>
+    </a>
+    <a routerLink="/about" mat-list-item>
+      <mat-icon>question_answer</mat-icon>
+      <span> About</span>
+    </a>
+  </div>
+
+  <!-- Not Logged In Users -->
+  <div class="user-auth" *ngIf="!isLoggedIn">
+    <a routerLink="/user/login" mat-list-item>
+      <mat-icon>account_circle</mat-icon>
+      <span> Log In</span>
+    </a>
+    <a routerLink="/user/register" mat-list-item>
+      <mat-icon>person_add</mat-icon>
+      <span> Register</span>
+    </a>
+  </div>
+  <!-- Logged In Users  -->
+  <div class="user-auth" *ngIf="isLoggedIn">
+    <a routerLink="/user/profile" mat-list-item>
+      <mat-icon>account_box</mat-icon>
+      <span> Profile</span>
+    </a>
+    <a (click)="logout()" mat-list-item>
+      <mat-icon>exit_to_app</mat-icon>
+      <span> Log Out</span>
+    </a>
+  </div>
 </mat-list>

@@ -32,6 +32,8 @@ $dark-app-theme: mat-dark-theme(
 html,
 body {
   height: 100%;
+  box-sizing: border-box;
+  margin: 0;
 }
 body {
   margin: 0;
