@@ -1,37 +1,25 @@
-<main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4">
-  <div class="inner-adjust">
-    <div class="pt-3 pb-2 mb-3 border-bottom">
-      <h1 class="h2">User Profile</h1>
+<!-- Profile Card -->
+<mat-card class="profile-card" *ngIf="this.userData as user">
+  <mat-card-content class="card-content">
+    <a href="">Change Image</a>
+    <div>
+      <img
+        class="user-image"
+        mat-card-image
+        src="{{ user.photoURL ? user.photoURL : '/assets/dummy-user.png' }}"
+        alt="{{ user.displayName ? user.displayName : 'dummy-user' }}"
+      />
     </div>
-    <!-- Show user data when logged in -->
-    <div class="row" *ngIf="authService.userData as user">
-      <div class="col-md-12">
-        <div class="media">
-          <img
-            class="user-image"
-            src="{{ user.photoURL ? user.photoURL : '/assets/dummy-user.png' }}"
-            alt="{{ user.displayName }}"
-          />
-          <div class="media-body">
-            <h1>
-              Hello:
-              <strong>{{
-                user.displayName ? user.displayName : "User"
-              }}</strong>
-            </h1>
+    <mat-card-title
+      >Email: <strong>{{ user.email }}</strong></mat-card-title
+    >
+    <mat-card-title *ngIf="user.displayName"
+      >Username: <strong>{{ user.displayName }}</strong></mat-card-title
+    >
+    <a href="">Change Username</a>
 
-            <p>
-              Email: <strong>{{ user.email }}</strong>
-            </p>
-            <p>
-              Email Verified: <strong>{{ user.emailVerified }}</strong>
-            </p>
-          </div>
-          <div>
-            <button>Edit Profile</button>
-          </div>
-        </div>
-      </div>
+    <div>
+      <button color="primary" mat-raised-button>Edit Profile</button>
     </div>
-  </div>
-</main>
+  </mat-card-content>
+</mat-card>

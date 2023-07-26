@@ -5,7 +5,12 @@
       <div>
         <mat-form-field>
           <mat-label>Email</mat-label>
-          <input type="email" matInput formControlName="email" />
+          <input
+            [errorStateMatcher]="matcher"
+            type="email"
+            matInput
+            formControlName="email"
+          />
           <mat-error *ngIf="form.get('email')?.errors?.['email']"
             >Please enter a valid email adress</mat-error
           >
@@ -17,7 +22,12 @@
       <div>
         <mat-form-field>
           <mat-label>Password</mat-label>
-          <input type="password" matInput formControlName="password" />
+          <input
+            [errorStateMatcher]="matcher"
+            type="password"
+            matInput
+            formControlName="password"
+          />
           <mat-error
             *ngIf="
                 form.get('password')?.errors?.['required']

@@ -13,7 +13,7 @@ const routes: Routes = [
   {
     path: 'verify-email',
     component: VerifyEmailComponent,
-    canActivate: [UserGuard],
+    canActivate: [AuthGuard],
   },
   { path: 'profile', component: ProfileComponent, canActivate: [AuthGuard] },
 ];

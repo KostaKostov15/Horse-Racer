@@ -1,35 +1,47 @@
-<div class="displayTable">
-  <div class="displayTableCell">
-    <div class="authBlock">
-      <h3>Thank You for Registering</h3>
-      <div class="formGroup" *ngIf="userData() as user">
-        <p class="text-center">
-          We have sent a confirmation email to <strong>{{ user.email }}</strong
-          >.
-        </p>
-        <p class="text-center">
-          Please check your email and click on the link to verfiy your email
-          address.
-        </p>
-      </div>
-
-      <div class="formGroup">
+<mat-card class="verify-email-card" *ngIf="this.userData as user">
+  <div *ngIf="!user.emailVerified">
+    <mat-card-header>
+      <mat-card-title>Thank You for Registering</mat-card-title>
+      <mat-card-subtitle
+        >We have sent a confirmation email to
+        <strong>{{ user.email }}</strong></mat-card-subtitle
+      >
+    </mat-card-header>
+    <mat-card-content>
+      <p>
+        Please check your email and click on the link to verfiy your email
+        address
+      </p>
+      <mat-card-actions>
         <button
-          type="button"
-          class="btn btnPrimary"
+          mat-raised-button
+          color="primary"
           (click)="sendVerificationEmail()"
         >
-          <i class="fas fa-redo-alt"></i>
           Resend Verification Email
         </button>
-      </div>
-    </div>
-    <div class="redirectToLogin">
-      <span
-        >Go back to?<span class="redirect" routerLink="/user/login">
-          Sign in</span
-        ></span
-      >
-    </div>
+      </mat-card-actions>
+    </mat-card-content>
   </div>
-</div>
+
+  <div *ngIf="user.emailVerified">
+    <mat-card-header>
+      <mat-card-title>Your email is alredy verified</mat-card-title>
+      <mat-card-subtitle>{{ user.email }}</mat-card-subtitle>
+    </mat-card-header>
+  </div>
+
+  <mat-card-content>
+    <h3>Go back to?</h3>
+    <mat-card-actions>
+      <button mat-stroked-button color="primary" routerLink="/">
+        <mat-icon>home</mat-icon>
+        Home Page
+      </button>
+      <button mat-stroked-button color="primary" routerLink="/user/profile">
+        <mat-icon>account_box</mat-icon>
+        Your Profile
+      </button>
+    </mat-card-actions>
+  </mat-card-content>
+</mat-card>

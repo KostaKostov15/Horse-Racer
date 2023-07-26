@@ -7,9 +7,9 @@ import { AppComponent } from './app.component';
 import { CoreModule } from './core/core.module';
 import { FeatureModule } from './feature/feature.module';
 import { AppRoutingModule } from './app-routing.module';
-import { CustomErrorStateMatcher } from './shared/custom-error-state-matcher';
 import { SharedModule } from './shared/shared.module';
 import { LoadingInterceptor } from './core/interceptors/loading.interceptor';
+import { CustomErrorStateMatcher } from './shared/custom-error-state-matcher';
 
 import { FIREBASE_OPTIONS } from '@angular/fire/compat';
 import { initializeApp, provideFirebaseApp } from '@angular/fire/app';
@@ -17,13 +17,13 @@ import { provideAuth, getAuth } from '@angular/fire/auth';
 import { provideFirestore, getFirestore } from '@angular/fire/firestore';
 import { environment } from '../environments/environment';
 
-import { MatSidenavModule } from '@angular/material/sidenav';
 import { ErrorStateMatcher } from '@angular/material/core';
+import { MyMaterialModule } from './shared/material.module';
 
 @NgModule({
   declarations: [AppComponent],
   imports: [
-    MatSidenavModule,
+    MyMaterialModule,
     BrowserModule,
     BrowserAnimationsModule,
     HttpClientModule,

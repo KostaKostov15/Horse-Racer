@@ -7,5 +7,17 @@ import { AuthService } from 'src/app/core/services/auth.service';
   styleUrls: ['./profile.component.scss'],
 })
 export class ProfileComponent {
-  constructor(public authService: AuthService) {}
+  constructor(private authService: AuthService) {}
+
+  get userData() {
+    return this.authService.userData;
+  }
+
+  updateUsername(inputUsername: string) {
+    this.authService.updateDisplayName(inputUsername);
+  }
+
+  updatePhotoURL(inputPhotoURL: string) {
+    this.authService.updatePhotoUrl(inputPhotoURL);
+  }
 }

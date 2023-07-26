@@ -3,29 +3,15 @@ import { CommonModule } from '@angular/common';
 import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';
 
-import { ReactiveFormsModule } from '@angular/forms';
-import { MatToolbarModule } from '@angular/material/toolbar';
-import { MatTooltipModule } from '@angular/material/tooltip';
-import { MatSidenavModule } from '@angular/material/sidenav';
-import { MatSlideToggleModule } from '@angular/material/slide-toggle';
-import { MatListModule } from '@angular/material/list';
-import { MatIconModule } from '@angular/material/icon';
-import { SidebarComponent } from './sidebar/sidebar.component';
 import { RouterModule } from '@angular/router';
+import { ReactiveFormsModule } from '@angular/forms';
+
+import { SidebarComponent } from './sidebar/sidebar.component';
+import { MyMaterialModule } from '../shared/material.module';
 
 @NgModule({
   declarations: [HeaderComponent, FooterComponent, SidebarComponent],
-  imports: [
-    ReactiveFormsModule,
-    MatSlideToggleModule,
-    MatTooltipModule,
-    CommonModule,
-    MatSidenavModule,
-    MatToolbarModule,
-    MatIconModule,
-    MatListModule,
-    RouterModule,
-  ],
+  imports: [ReactiveFormsModule, CommonModule, RouterModule, MyMaterialModule],
   exports: [HeaderComponent, FooterComponent, SidebarComponent],
 })
 export class CoreModule {}

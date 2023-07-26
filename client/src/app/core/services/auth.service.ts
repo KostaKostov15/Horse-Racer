@@ -6,7 +6,6 @@ import {
 } from '@angular/fire/compat/firestore';
 import { Router } from '@angular/router';
 import { User } from '../models/user';
-import { LoaderService } from './loader.service';
 
 @Injectable({
   providedIn: 'root',
@@ -17,8 +16,7 @@ export class AuthService {
   constructor(
     private fireAuth: AngularFireAuth,
     private afs: AngularFirestore,
-    private router: Router,
-    private loaderService: LoaderService
+    private router: Router
   ) {
     this.fireAuth.authState.subscribe((user) => {
       if (user) {
@@ -30,6 +28,11 @@ export class AuthService {
         JSON.parse(localStorage.getItem('user')!);
       }
     });
+  }
+
+  get isLoggedIn(): boolean {
+    const user = JSON.parse(localStorage.getItem('user')!);
+    return user !== null ? true : false;
   }
 
   //Login
@@ -83,9 +86,34 @@ export class AuthService {
       });
   }
 
-  get isLoggedIn(): boolean {
-    const user = JSON.parse(localStorage.getItem('user')!);
-    return user !== null ? true : false;
+  updateDisplayName(displayName: string) {
+    return this.fireAuth.currentUser.then((user) => {
+      user
+        ?.updateProfile({
+          displayName,
+        })
+        .then(() => {
+          this.setUserData(user);
+        })
+        .catch((err) => {
+          window.alert(err.message);
+        });
+    });
+  }
+
+  updatePhotoUrl(photoURL: string) {
+    return this.fireAuth.currentUser.then((user) => {
+      user
+        ?.updateProfile({
+          photoURL,
+        })
+        .then(() => {
+          this.setUserData(user);
+        })
+        .catch((err) => {
+          window.alert(err.message);
+        });
+    });
   }
 
   setUserData(user: any) {

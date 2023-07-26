@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-import { User } from 'src/app/core/models/user';
 import { AuthService } from 'src/app/core/services/auth.service';
 
 @Component({
@@ -16,5 +15,9 @@ export class VerifyEmailComponent {
 
   get userData() {
     return this.authService.userData;
+  }
+
+  showUser() {
+    console.log(this.userData);
   }
 }
