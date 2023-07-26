@@ -6,6 +6,7 @@ import {
 } from '@angular/fire/compat/firestore';
 import { Router } from '@angular/router';
 import { User } from '../models/user';
+import { LoaderService } from './loader.service';
 
 @Injectable({
   providedIn: 'root',
@@ -15,8 +16,9 @@ export class AuthService {
 
   constructor(
     private fireAuth: AngularFireAuth,
+    private afs: AngularFirestore,
     private router: Router,
-    private afs: AngularFirestore
+    private loaderService: LoaderService
   ) {
     this.fireAuth.authState.subscribe((user) => {
       if (user) {
@@ -52,12 +54,8 @@ export class AuthService {
     return this.fireAuth
       .createUserWithEmailAndPassword(email, password)
       .then((result) => {
+        this.sendVerificationMail();
         this.setUserData(result.user);
-        this.fireAuth.authState.subscribe((user) => {
-          if (user) {
-            this.router.navigate(['/']);
-          }
-        });
       })
       .catch((err) => {
         window.alert(err.message);
@@ -75,6 +73,14 @@ export class AuthService {
         window.alert(err.message);
       }
     );
+  }
+
+  sendVerificationMail() {
+    return this.fireAuth.currentUser
+      .then((u: any) => u.sendEmailVerification())
+      .then(() => {
+        this.router.navigate(['/user/verify-email']);
+      });
   }
 
   get isLoggedIn(): boolean {

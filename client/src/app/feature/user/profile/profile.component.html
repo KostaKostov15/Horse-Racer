@@ -8,7 +8,7 @@
       <div class="col-md-12">
         <div class="media">
           <img
-            class="align-self-start mr-5 img-thumbnail rounded-circle"
+            class="user-image"
             src="{{ user.photoURL ? user.photoURL : '/assets/dummy-user.png' }}"
             alt="{{ user.displayName }}"
           />
@@ -19,15 +19,16 @@
                 user.displayName ? user.displayName : "User"
               }}</strong>
             </h1>
-            <p>
-              User ID: <strong>{{ user.uid }}</strong>
-            </p>
+
             <p>
               Email: <strong>{{ user.email }}</strong>
             </p>
             <p>
               Email Verified: <strong>{{ user.emailVerified }}</strong>
             </p>
+          </div>
+          <div>
+            <button>Edit Profile</button>
           </div>
         </div>
       </div>

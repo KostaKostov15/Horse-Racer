@@ -9,9 +9,15 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
 import { ProfileComponent } from './profile/profile.component';
+import { VerifyEmailComponent } from './verify-email/verify-email.component';
 
 @NgModule({
-  declarations: [LoginComponent, RegisterComponent, ProfileComponent],
+  declarations: [
+    LoginComponent,
+    RegisterComponent,
+    ProfileComponent,
+    VerifyEmailComponent,
+  ],
   imports: [
     ReactiveFormsModule,
     CommonModule,
@@ -22,6 +28,11 @@ import { ProfileComponent } from './profile/profile.component';
     FormsModule,
     UserRoutingModule,
   ],
-  exports: [LoginComponent, RegisterComponent, ProfileComponent],
+  exports: [
+    LoginComponent,
+    RegisterComponent,
+    ProfileComponent,
+    VerifyEmailComponent,
+  ],
 })
 export class UserModule {}
