@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { NgForm } from '@angular/forms';
 import { AuthService } from 'src/app/core/services/auth.service';
 
 @Component({
@@ -7,17 +8,27 @@ import { AuthService } from 'src/app/core/services/auth.service';
   styleUrls: ['./profile.component.scss'],
 })
 export class ProfileComponent {
+  isEditMode: boolean = false;
+
   constructor(private authService: AuthService) {}
 
   get userData() {
     return this.authService.userData;
   }
 
-  updateUsername(inputUsername: string) {
-    this.authService.updateDisplayName(inputUsername);
+  toggleEditMode() {
+    this.isEditMode = !this.isEditMode;
   }
 
-  updatePhotoURL(inputPhotoURL: string) {
-    this.authService.updatePhotoUrl(inputPhotoURL);
+  editProfile(form: NgForm) {
+    const { displayName, photoURL } = form.value;
+    if (displayName == '' && photoURL == '') {
+      this.isEditMode = !this.isEditMode;
+      return;
+    }
+
+    displayName && this.authService.updateDisplayName(displayName);
+    photoURL && this.authService.updatePhotoUrl(photoURL);
+    this.isEditMode = !this.isEditMode;
   }
 }

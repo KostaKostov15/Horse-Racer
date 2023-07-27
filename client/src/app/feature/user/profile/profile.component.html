@@ -1,7 +1,6 @@
 <!-- Profile Card -->
 <mat-card class="profile-card" *ngIf="this.userData as user">
   <mat-card-content class="card-content">
-    <a href="">Change Image</a>
     <div>
       <img
         class="user-image"
@@ -10,16 +9,60 @@
         alt="{{ user.displayName ? user.displayName : 'dummy-user' }}"
       />
     </div>
+    <mat-card-subtitle *ngIf="!user.emailVerified"
+      >Email not verified
+      <a routerLink="/user/verify-email"
+        ><strong>Verify now</strong></a
+      ></mat-card-subtitle
+    >
     <mat-card-title
       >Email: <strong>{{ user.email }}</strong></mat-card-title
     >
-    <mat-card-title *ngIf="user.displayName"
-      >Username: <strong>{{ user.displayName }}</strong></mat-card-title
-    >
-    <a href="">Change Username</a>
 
-    <div>
-      <button color="primary" mat-raised-button>Edit Profile</button>
+    <mat-card-title
+      >Username:
+      <strong>{{
+        user.displayName ? user.displayName : ""
+      }}</strong></mat-card-title
+    >
+    <div *ngIf="!isEditMode">
+      <button color="primary" mat-raised-button (click)="toggleEditMode()">
+        Edit Profile
+      </button>
     </div>
+
+    <form #form="ngForm" (ngSubmit)="editProfile(form)" *ngIf="isEditMode">
+      <div>
+        <mat-form-field>
+          <mat-label>Username</mat-label>
+          <input
+            matInput
+            type="text"
+            name="displayName"
+            ngModel
+            #inputUsername="ngModel"
+            placeholder="Petrin"
+          />
+        </mat-form-field>
+      </div>
+
+      <div>
+        <mat-form-field>
+          <mat-label>Image URL</mat-label>
+          <input
+            matInput
+            type="text"
+            name="photoURL"
+            ngModel
+            #inputImageUrl="ngModel"
+            placeholder="https://www.img.bg/1"
+          />
+        </mat-form-field>
+      </div>
+
+      <div>
+        <button mat-raised-button color="accent" type="submit">Submit</button>
+      </div>
+    </form>
   </mat-card-content>
 </mat-card>

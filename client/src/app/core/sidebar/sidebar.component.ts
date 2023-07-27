@@ -14,6 +14,10 @@ export class SidebarComponent {
     return this.authService.isLoggedIn;
   }
 
+  get userData() {
+    return this.authService.userData;
+  }
+
   logout(): void {
     this.authService.logout();
   }
