@@ -1,1 +1,4 @@
-<mat-spinner class="center" *ngIf="this.isLoading"></mat-spinner>
+<mat-spinner
+  class="center"
+  *ngIf="this.loaderService.getLoading()"
+></mat-spinner>
