@@ -14,11 +14,11 @@ export class AuthService {
   userData: any;
 
   constructor(
-    private fireAuth: AngularFireAuth,
-    private afs: AngularFirestore,
+    private afAuth: AngularFireAuth,
+    private afStore: AngularFirestore,
     private router: Router
   ) {
-    this.fireAuth.authState.subscribe((user) => {
+    this.afAuth.authState.subscribe((user) => {
       if (user) {
         this.userData = user;
         localStorage.setItem('user', JSON.stringify(this.userData));
@@ -37,11 +37,11 @@ export class AuthService {
 
   //Login
   login(email: string, password: string) {
-    return this.fireAuth
+    return this.afAuth
       .signInWithEmailAndPassword(email, password)
       .then((result) => {
         this.setUserData(result.user);
-        this.fireAuth.authState.subscribe((user) => {
+        this.afAuth.authState.subscribe((user) => {
           if (user) {
             this.router.navigate(['/user/profile']);
           }
@@ -54,7 +54,7 @@ export class AuthService {
 
   //Register
   register(email: string, password: string) {
-    return this.fireAuth
+    return this.afAuth
       .createUserWithEmailAndPassword(email, password)
       .then((result) => {
         this.sendVerificationMail();
@@ -67,7 +67,7 @@ export class AuthService {
 
   //Logout
   logout() {
-    return this.fireAuth.signOut().then(
+    return this.afAuth.signOut().then(
       () => {
         localStorage.removeItem('user');
         this.router.navigate(['/user/login']);
@@ -79,7 +79,7 @@ export class AuthService {
   }
 
   sendVerificationMail() {
-    return this.fireAuth.currentUser
+    return this.afAuth.currentUser
       .then((u: any) => u.sendEmailVerification())
       .then(() => {
         this.router.navigate(['/user/verify-email']);
@@ -87,7 +87,7 @@ export class AuthService {
   }
 
   updateDisplayName(displayName: string) {
-    return this.fireAuth.currentUser.then((user) => {
+    return this.afAuth.currentUser.then((user) => {
       user
         ?.updateProfile({
           displayName,
@@ -102,7 +102,7 @@ export class AuthService {
   }
 
   updatePhotoUrl(photoURL: string) {
-    return this.fireAuth.currentUser.then((user) => {
+    return this.afAuth.currentUser.then((user) => {
       user
         ?.updateProfile({
           photoURL,
@@ -117,7 +117,7 @@ export class AuthService {
   }
 
   setUserData(user: any) {
-    const userRef: AngularFirestoreDocument<any> = this.afs.doc(
+    const userRef: AngularFirestoreDocument<any> = this.afStore.doc(
       `users/${user.uid}`
     );
     const userData: User = {

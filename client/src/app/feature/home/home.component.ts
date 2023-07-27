@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { AuthService } from 'src/app/core/services/auth.service';
+import { HorseService } from 'src/app/core/services/horse.service';
 
 @Component({
   selector: 'app-home',
@@ -7,12 +8,16 @@ import { AuthService } from 'src/app/core/services/auth.service';
   styleUrls: ['./home.component.scss'],
 })
 export class HomeComponent {
-  /**
-   *
-   */
-  constructor(private authService: AuthService) {}
+  constructor(
+    private authService: AuthService,
+    private horseService: HorseService
+  ) {}
 
   get userData() {
     return this.authService.userData;
+  }
+
+  getAllHorses() {
+    this.horseService.getHorses().subscribe((h) => console.log(h));
   }
 }

@@ -1,5 +1,7 @@
 export interface Horse {
   horseName: string;
   racingNumber: number;
-  description?: string;
+  description: string;
+  wins: number;
+  level: number;
 }
