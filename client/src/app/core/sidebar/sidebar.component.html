@@ -1,5 +1,5 @@
 <mat-list role="list" class="sidebar">
-  <!-- Shared Views -->
+  <!-- Shared Views  -->
   <div>
     <a routerLink="/" mat-list-item>
       <mat-icon>home</mat-icon>
@@ -23,6 +23,7 @@
     </a>
   </div>
   <!-- Logged In Users  -->
+
   <div class="user-auth" *ngIf="isLoggedIn">
     <a routerLink="/user/profile" mat-list-item>
       <mat-icon>account_box</mat-icon>

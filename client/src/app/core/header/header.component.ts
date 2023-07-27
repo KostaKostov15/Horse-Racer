@@ -3,6 +3,7 @@ import { FormControl } from '@angular/forms';
 import { ThemeService } from '../services/theme.service';
 import { Observable } from 'rxjs';
 import { SidebarService } from '../services/sidebar.service';
+import { AuthService } from '../services/auth.service';
 
 @Component({
   selector: 'app-header',
@@ -16,7 +17,8 @@ export class HeaderComponent implements OnInit {
 
   constructor(
     private themeService: ThemeService,
-    private sidebarService: SidebarService
+    private sidebarService: SidebarService,
+    public authService: AuthService
   ) {}
 
   ngOnInit(): void {

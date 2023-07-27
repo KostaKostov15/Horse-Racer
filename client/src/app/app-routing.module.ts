@@ -11,6 +11,13 @@ const routes: Routes = [
     loadChildren: () =>
       import('./feature/user/user.module').then((module) => module.UserModule),
   },
+  {
+    path: 'horse',
+    loadChildren: () =>
+      import('./feature/horse/horse.module').then(
+        (module) => module.HorseModule
+      ),
+  },
 ];
 
 @NgModule({

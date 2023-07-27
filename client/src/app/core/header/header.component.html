@@ -2,11 +2,45 @@
   <button
     matTooltip="Menu"
     matTooltipPosition="right"
-    mat-mini-fab
+    mat-icon-button
     (click)="toggleSidebar()"
   >
     <mat-icon>menu</mat-icon>
   </button>
+
+  <div class="example-spacer"></div>
+
+  <div *ngIf="this.authService.isLoggedIn">
+    <button
+      color="accent"
+      matTooltip="Horse Actions"
+      mat-flat-button
+      [matMenuTriggerFor]="menu"
+      aria-label="Horse actions icon-button with a menu"
+    >
+      START
+    </button>
+    <mat-menu #menu="matMenu">
+      <div>
+        <button mat-menu-item>
+          <a routerLink="/horse/create" mat-list-item>
+            <div>
+              <mat-icon class="horse-action">create</mat-icon>
+              <span>CREATE HORSE</span>
+            </div>
+          </a>
+        </button>
+      </div>
+      <div>
+        <button mat-menu-item>
+          <a routerLink="#" mat-list-item>
+            <mat-icon class="horse-action">games</mat-icon>
+            RACE
+          </a>
+        </button>
+      </div>
+    </mat-menu>
+  </div>
 
   <div class="example-spacer"></div>
 
