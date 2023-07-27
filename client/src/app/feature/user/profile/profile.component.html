@@ -16,7 +16,12 @@
       ></mat-card-subtitle
     >
     <mat-card-title
-      >Email: <strong>{{ user.email }}</strong></mat-card-title
+      >Email: <strong>{{ user.email }}</strong>
+      <span *ngIf="user.emailVerified">
+        <span class="material-icons" style="color: rgb(0, 0, 255)"
+          >verified</span
+        >
+      </span></mat-card-title
     >
 
     <mat-card-title

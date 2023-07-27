@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 
 import { AuthService } from 'src/app/core/services/auth.service';
+import { LoaderService } from 'src/app/core/services/loader.service';
 import { CustomErrorStateMatcher } from 'src/app/shared/custom-error-state-matcher';
 
 @Component({
@@ -10,7 +11,13 @@ import { CustomErrorStateMatcher } from 'src/app/shared/custom-error-state-match
   styleUrls: ['./login.component.scss'],
 })
 export class LoginComponent {
-  constructor(private authService: AuthService, private fb: FormBuilder) {}
+  isBtnDisabled: boolean = false;
+
+  constructor(
+    private authService: AuthService,
+    private fb: FormBuilder,
+    private loaderService: LoaderService
+  ) {}
 
   matcher = new CustomErrorStateMatcher();
 
@@ -26,6 +33,11 @@ export class LoginComponent {
 
     const { email, password } = this.form.value;
 
-    this.authService.login(email!, password!);
+    this.isBtnDisabled = true;
+    this.loaderService.setLoading(true);
+    this.authService.login(email!, password!).then(() => {
+      this.isBtnDisabled = false;
+      this.loaderService.setLoading(false);
+    });
   }
 }

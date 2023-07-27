@@ -43,7 +43,7 @@ export class AuthService {
         this.setUserData(result.user);
         this.fireAuth.authState.subscribe((user) => {
           if (user) {
-            this.router.navigate(['/']);
+            this.router.navigate(['/user/profile']);
           }
         });
       })

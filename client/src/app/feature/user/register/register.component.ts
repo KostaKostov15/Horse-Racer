@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 
 import { AuthService } from 'src/app/core/services/auth.service';
+import { LoaderService } from 'src/app/core/services/loader.service';
 import { CustomErrorStateMatcher } from 'src/app/shared/custom-error-state-matcher';
 import { matchPasswordsValidator } from 'src/app/shared/validators/match-passwords-validator';
 
@@ -11,6 +12,7 @@ import { matchPasswordsValidator } from 'src/app/shared/validators/match-passwor
   styleUrls: ['./register.component.scss'],
 })
 export class RegisterComponent {
+  isBtnDisabled: boolean = false;
   matcher = new CustomErrorStateMatcher();
 
   form = this.fb.group({
@@ -26,7 +28,11 @@ export class RegisterComponent {
     ),
   });
 
-  constructor(private authService: AuthService, private fb: FormBuilder) {}
+  constructor(
+    private authService: AuthService,
+    private fb: FormBuilder,
+    private loaderService: LoaderService
+  ) {}
 
   register(): void {
     if (this.form.invalid) {
@@ -35,6 +41,12 @@ export class RegisterComponent {
 
     const { email, passwordGroup: { password } = {} } = this.form.value;
 
-    this.authService.register(email!, password!);
+    this.isBtnDisabled = true;
+    this.loaderService.setLoading(true);
+
+    this.authService.register(email!, password!).then(() => {
+      this.isBtnDisabled = false;
+      this.loaderService.setLoading(false);
+    });
   }
 }

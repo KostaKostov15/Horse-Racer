@@ -73,7 +73,7 @@
           type="submit"
           color="accent"
           mat-raised-button
-          [disabled]="form.invalid"
+          [disabled]="form.invalid || isBtnDisabled"
         >
           Sign Up
         </button>

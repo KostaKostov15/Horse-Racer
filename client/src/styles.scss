@@ -5,7 +5,7 @@ $light-app-theme: mat-light-theme(
   (
     color: (
       primary: mat-palette($mat-indigo, 500),
-      accent: mat-palette($mat-amber, 500),
+      accent: mat-palette($mat-lime, 500),
       warn: mat-palette($mat-red),
     ),
   )
@@ -15,7 +15,7 @@ $dark-app-theme: mat-dark-theme(
   (
     color: (
       primary: mat-palette($mat-indigo, 500),
-      accent: mat-palette($mat-amber, 500),
+      accent: mat-palette($mat-lime, 500),
       warn: mat-palette($mat-red),
     ),
   )
