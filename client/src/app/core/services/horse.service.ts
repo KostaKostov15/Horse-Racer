@@ -1,32 +1,17 @@
-import { Injectable, inject } from '@angular/core';
-import {
-  AngularFirestore,
-  AngularFirestoreCollection,
-} from '@angular/fire/compat/firestore';
-import {
-  Firestore,
-  collectionData,
-  collection,
-  query,
-  where,
-} from '@angular/fire/firestore';
-import { Observable, map, tap } from 'rxjs';
+import { Injectable } from '@angular/core';
+import { AngularFirestore } from '@angular/fire/compat/firestore';
+
+import { Observable } from 'rxjs';
 import { Horse } from '../models/horse';
 
 @Injectable({
   providedIn: 'root',
 })
 export class HorseService {
-  horses$: Observable<Horse[]>;
-  firestore: Firestore = inject(Firestore);
-
-  constructor(private afs: AngularFirestore) {
-    const horsesCollection = collection(this.firestore, 'horses');
-    this.horses$ = collectionData(horsesCollection) as Observable<Horse[]>;
-  }
+  constructor(private afs: AngularFirestore) {}
 
   getHorses(): Observable<Horse[]> {
-    return this.horses$;
+    return this.afs.collection<Horse>('horses').valueChanges();
   }
 
   getUserHorses(userId: string): Observable<Horse[]> {

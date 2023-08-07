@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { NgForm } from '@angular/forms';
+import { Router } from '@angular/router';
 import { Horse } from 'src/app/core/models/horse';
 import { AuthService } from 'src/app/core/services/auth.service';
 import { HorseService } from 'src/app/core/services/horse.service';
@@ -15,7 +16,8 @@ export class CreateHorseComponent {
 
   constructor(
     private authService: AuthService,
-    private horseService: HorseService
+    private horseService: HorseService,
+    private router: Router
   ) {}
 
   createHorse(form: NgForm) {
@@ -39,5 +41,7 @@ export class CreateHorseComponent {
     this.horseService.createHorse(horseData);
 
     form.resetForm();
+
+    this.router.navigate(['/horse/user-horses']);
   }
 }

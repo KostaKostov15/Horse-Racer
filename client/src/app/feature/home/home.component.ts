@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { Horse } from 'src/app/core/models/horse';
 import { AuthService } from 'src/app/core/services/auth.service';
 import { HorseService } from 'src/app/core/services/horse.service';
 
@@ -7,17 +8,21 @@ import { HorseService } from 'src/app/core/services/horse.service';
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.scss'],
 })
-export class HomeComponent {
+export class HomeComponent implements OnInit {
+  horses: Horse[] = [];
+
   constructor(
     private authService: AuthService,
     private horseService: HorseService
   ) {}
 
-  get userData() {
-    return this.authService.userData;
+  ngOnInit(): void {
+    this.horseService.getHorses().subscribe((horses) => {
+      this.horses = horses;
+    });
   }
 
-  getAllHorses() {
-    this.horseService.getHorses().subscribe((h) => console.log(h));
+  get userData() {
+    return this.authService.userData;
   }
 }

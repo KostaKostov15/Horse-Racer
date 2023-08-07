@@ -10,7 +10,7 @@ import { HorseService } from 'src/app/core/services/horse.service';
   styleUrls: ['./user-horses.component.scss'],
 })
 export class UserHorsesComponent implements OnInit {
-  userHorses$: Horse[];
+  userHorses: Horse[] = [];
 
   constructor(
     private horseService: HorseService,
@@ -21,7 +21,7 @@ export class UserHorsesComponent implements OnInit {
     this.horseService
       .getUserHorses(this.authService.currentUser.uid)
       .subscribe((horses) => {
-        this.userHorses$ = horses;
+        this.userHorses = horses;
       });
   }
 }
