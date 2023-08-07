@@ -66,7 +66,22 @@
       </div>
 
       <div>
-        <button mat-raised-button color="accent" type="submit">Submit</button>
+        <button
+          (click)="onCancel()"
+          mat-raised-button
+          color="warn"
+          type="submit"
+        >
+          Cancel
+        </button>
+        <button
+          [disabled]="!inputUsername.value && !inputImageUrl.value"
+          mat-raised-button
+          color="accent"
+          type="submit"
+        >
+          Submit
+        </button>
       </div>
     </form>
   </mat-card-content>

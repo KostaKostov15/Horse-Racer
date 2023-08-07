@@ -35,6 +35,10 @@ export class AuthService {
     return user !== null ? true : false;
   }
 
+  get currentUser(): User {
+    return JSON.parse(localStorage.getItem('user')!);
+  }
+
   //Login
   login(email: string, password: string) {
     return this.afAuth

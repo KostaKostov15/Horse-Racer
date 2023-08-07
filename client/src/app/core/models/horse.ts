@@ -4,4 +4,5 @@ export interface Horse {
   description: string;
   wins: number;
   level: number;
+  owner: string;
 }

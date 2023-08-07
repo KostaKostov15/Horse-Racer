@@ -31,4 +31,8 @@ export class ProfileComponent {
     photoURL && this.authService.updatePhotoUrl(photoURL);
     this.isEditMode = !this.isEditMode;
   }
+
+  onCancel() {
+    this.isEditMode = !this.isEditMode;
+  }
 }
