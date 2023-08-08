@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
 
-import { Observable } from 'rxjs';
+import { Observable, map } from 'rxjs';
 import { Horse } from '../models/horse';
 
 @Injectable({
@@ -17,7 +17,16 @@ export class HorseService {
   getUserHorses(userId: string): Observable<Horse[]> {
     return this.afs
       .collection<Horse>('horses', (ref) => ref.where('owner', '==', userId))
-      .valueChanges();
+      .snapshotChanges()
+      .pipe(
+        map((actions) => {
+          return actions.map((a) => {
+            const data = a.payload.doc.data() as Horse;
+            const id = a.payload.doc.id;
+            return { id, ...data };
+          });
+        })
+      );
   }
 
   createHorse(horseData: Horse) {
