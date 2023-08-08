@@ -50,6 +50,17 @@
     </mat-menu>
   </div>
 
+  <div *ngIf="!this.authService.isLoggedIn">
+    <button
+      color="warn"
+      matTooltip="Please, Login or Register to Play"
+      mat-flat-button
+      aria-label="Horse actions icon-button with a menu"
+    >
+      START
+    </button>
+  </div>
+
   <div class="example-spacer"></div>
 
   <mat-icon class="mr-6">brightness_5</mat-icon>
