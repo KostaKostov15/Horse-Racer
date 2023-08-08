@@ -3,6 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { AuthGuard } from 'src/app/core/guards/auth.guard';
 import { CreateHorseComponent } from './create-horse/create-horse.component';
 import { UserHorsesComponent } from './user-horses/user-horses.component';
+import { RaceComponent } from './race/race.component';
 
 const routes: Routes = [
   {
@@ -13,6 +14,11 @@ const routes: Routes = [
   {
     path: 'user-horses',
     component: UserHorsesComponent,
+    canActivate: [AuthGuard],
+  },
+  {
+    path: 'race',
+    component: RaceComponent,
     canActivate: [AuthGuard],
   },
 ];

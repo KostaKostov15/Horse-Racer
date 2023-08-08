@@ -1,0 +1,36 @@
+<mat-card class="race-track">
+  <mat-card-title>Race Track</mat-card-title>
+  <mat-card-content>
+    <hr />
+    <div [ngStyle]="{ 'left.px': playerPts }" class="player">
+      <img
+        class="horse-image"
+        src="/assets/horse-running-2.gif"
+        alt="horse-running"
+      />
+    </div>
+
+    <hr />
+    <div [ngStyle]="{ 'left.px': botPts }" class="player">
+      <img
+        class="horse-image"
+        src="/assets/horse-running-2.gif"
+        alt="horse-running"
+      />
+    </div>
+    <hr />
+    <mat-card-actions>
+      <button mat-raised-button color="primary" (click)="startRace()">
+        RACE
+      </button>
+      <button
+        [disabled]="!isGameOver"
+        mat-raised-button
+        color="warn"
+        (click)="restartRace()"
+      >
+        RESTART
+      </button>
+    </mat-card-actions>
+  </mat-card-content>
+</mat-card>
