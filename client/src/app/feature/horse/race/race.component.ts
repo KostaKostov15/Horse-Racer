@@ -97,9 +97,17 @@ export class RaceComponent implements OnInit {
   }
 
   addWin() {
-    const horseData = { ...this.selectedHorse };
-    horseData.wins = horseData.wins + 1;
-    this.horseService.updateHorse(this.selectedHorse?.id, horseData);
+    this.selectedHorse.wins++;
+
+    if (this.selectedHorse.wins % 5 == 0) {
+      this.selectedHorse.level = this.selectedHorse.wins / 5;
+    }
+
+    this.horseService
+      .updateHorse(this.selectedHorse?.id, this.selectedHorse)
+      .then((res) => {
+        this.selectedHorse = res;
+      });
   }
 
   announceWinner() {
