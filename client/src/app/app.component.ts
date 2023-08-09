@@ -19,6 +19,6 @@ export class AppComponent implements OnInit {
 
   ngOnInit() {
     this.isDarkTheme = this.themeService.isDarkTheme;
-    this.isSidebarOpen = this.sidebarService.isSidebarOpen;
+    this.isSidebarOpen = this.sidebarService.isSidebarOpen$;
   }
 }

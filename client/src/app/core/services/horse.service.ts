@@ -32,4 +32,8 @@ export class HorseService {
   createHorse(horseData: Horse) {
     return this.afs.collection('horses').add(horseData);
   }
+
+  updateHorse(horseId: string, horseData: any) {
+    return this.afs.collection('horses').doc(horseId).update(horseData);
+  }
 }

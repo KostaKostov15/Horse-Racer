@@ -5,11 +5,11 @@ import { BehaviorSubject } from 'rxjs';
   providedIn: 'root',
 })
 export class SidebarService {
-  private _openSidebar = new BehaviorSubject<boolean>(false);
-  public isSidebarOpen = this._openSidebar.asObservable();
+  private openSidebar$$ = new BehaviorSubject<boolean>(false);
+  public isSidebarOpen$ = this.openSidebar$$.asObservable();
 
   setSidebarOpen(): void {
-    this._openSidebar.next(!this._openSidebar.getValue());
+    this.openSidebar$$.next(!this.openSidebar$$.getValue());
   }
 
   constructor() {}

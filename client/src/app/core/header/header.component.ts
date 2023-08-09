@@ -23,7 +23,7 @@ export class HeaderComponent implements OnInit {
 
   ngOnInit(): void {
     this.isDarkTheme = this.themeService.isDarkTheme;
-    this.isSidebarOpen = this.sidebarService.isSidebarOpen;
+    this.isSidebarOpen = this.sidebarService.isSidebarOpen$;
   }
 
   toggleDarkTheme(checked: boolean): void {

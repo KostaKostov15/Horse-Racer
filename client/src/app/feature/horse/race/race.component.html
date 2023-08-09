@@ -20,6 +20,11 @@
     <mat-card-title>Race Track</mat-card-title>
     <mat-card-content>
       <div class="race-line">
+        <mat-card-subtitle
+          >HORSE: {{ this.selectedHorse.horseName }}, Level:
+          {{ this.selectedHorse.level }}, Total wins:
+          {{ this.selectedHorse.wins }}</mat-card-subtitle
+        >
         <hr />
         <mat-divider />
         <div [ngStyle]="{ 'left.px': playerPts }" class="player">
@@ -51,6 +56,7 @@
         </div>
         <mat-divider />
         <hr />
+        <mat-card-subtitle>BOT</mat-card-subtitle>
       </div>
       <mat-card-actions>
         <button

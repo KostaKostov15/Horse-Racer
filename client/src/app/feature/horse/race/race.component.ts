@@ -18,7 +18,7 @@ export class RaceComponent implements OnInit {
   levelInfluence: number = 0.035;
 
   playerHorses: Horse[] = [];
-  selectedHorse: Horse | undefined = undefined;
+  selectedHorse: Horse | any;
   playerPts: number = 0;
   botPts: number = 0;
 
@@ -53,6 +53,7 @@ export class RaceComponent implements OnInit {
 
   selectHorse(horse: Horse): void {
     this.selectedHorse = horse;
+    console.log(this.selectedHorse);
   }
 
   startRace() {
@@ -72,6 +73,7 @@ export class RaceComponent implements OnInit {
         this.isGameOver = true;
         this.winner = this.playerPts > this.botPts ? 'player' : 'bot';
         clearInterval(raceInterval);
+        this.announceWinner();
       }
     }, this.raceIntervalMs);
   }
@@ -92,5 +94,32 @@ export class RaceComponent implements OnInit {
     this.gameStatus = 0;
     this.playerPts = 0;
     this.botPts = 0;
+  }
+
+  addWin() {
+    const horseData = { ...this.selectedHorse };
+    horseData.wins = horseData.wins + 1;
+    this.horseService.updateHorse(this.selectedHorse?.id, horseData);
+  }
+
+  announceWinner() {
+    if (this.winner == 'player') {
+      this.dialog.open(AlertComponent, {
+        data: {
+          title: 'CONGRATULATIONS',
+          message: 'YOU HAVE WON THE RACE',
+          color: 'green',
+        },
+      });
+      this.addWin();
+    } else {
+      this.dialog.open(AlertComponent, {
+        data: {
+          title: 'UNLUCKY',
+          message: 'YOU HAVE LOST',
+          color: 'red',
+        },
+      });
+    }
   }
 }
