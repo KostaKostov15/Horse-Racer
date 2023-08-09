@@ -6,10 +6,21 @@ import { HorseRoutingModule } from './horse-routing.module';
 import { FormsModule } from '@angular/forms';
 import { UserHorsesComponent } from './user-horses/user-horses.component';
 import { RaceComponent } from './race/race.component';
+import { LeaderboardComponent } from './leaderboard/leaderboard.component';
 
 @NgModule({
-  declarations: [CreateHorseComponent, UserHorsesComponent, RaceComponent],
+  declarations: [
+    CreateHorseComponent,
+    UserHorsesComponent,
+    RaceComponent,
+    LeaderboardComponent,
+  ],
   imports: [CommonModule, MyMaterialModule, HorseRoutingModule, FormsModule],
-  exports: [CreateHorseComponent, UserHorsesComponent, RaceComponent],
+  exports: [
+    CreateHorseComponent,
+    UserHorsesComponent,
+    RaceComponent,
+    LeaderboardComponent,
+  ],
 })
 export class HorseModule {}

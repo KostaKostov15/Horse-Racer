@@ -4,6 +4,7 @@ import { AuthGuard } from 'src/app/core/guards/auth.guard';
 import { CreateHorseComponent } from './create-horse/create-horse.component';
 import { UserHorsesComponent } from './user-horses/user-horses.component';
 import { RaceComponent } from './race/race.component';
+import { LeaderboardComponent } from './leaderboard/leaderboard.component';
 
 const routes: Routes = [
   {
@@ -20,6 +21,10 @@ const routes: Routes = [
     path: 'race',
     component: RaceComponent,
     canActivate: [AuthGuard],
+  },
+  {
+    path: 'leaderboard',
+    component: LeaderboardComponent,
   },
 ];
 

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { Horse } from 'src/app/core/models/horse';
+import { User } from 'src/app/core/models/user';
 import { AuthService } from 'src/app/core/services/auth.service';
 import { HorseService } from 'src/app/core/services/horse.service';
 import { AlertComponent } from 'src/app/shared/dialog/alert/alert.component';
@@ -13,6 +14,7 @@ import { AlertComponent } from 'src/app/shared/dialog/alert/alert.component';
 export class UserHorsesComponent implements OnInit {
   dialogResult: string;
   userHorses: Horse[] = [];
+  user: User;
   displayedColumns: string[] = [
     'racingNumber',
     'horseName',
@@ -28,6 +30,7 @@ export class UserHorsesComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
+    this.user = this.authService.currentUser;
     this.horseService
       .getUserHorses(this.authService.currentUser.uid)
       .subscribe({

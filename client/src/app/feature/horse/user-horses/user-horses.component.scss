@@ -1,3 +1,24 @@
 table {
   width: 100%;
 }
+
+.user-data {
+  display: flex;
+  max-width: 1000px;
+  margin-left: 20%;
+  margin-top: 20px;
+  justify-content: center;
+  min-height: 70px;
+}
+
+h1 {
+  margin-top: 20px;
+  margin-left: 20px;
+  min-height: 40px;
+  font-size: 40px;
+  font-weight: 500;
+  background-image: linear-gradient(to left, #300a9b, #1d9ed1);
+  color: transparent;
+  background-clip: text;
+  -webkit-background-clip: text;
+}
