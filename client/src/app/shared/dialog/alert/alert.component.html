@@ -1,0 +1,9 @@
+<div class="container" [style.color]="data.color">
+  <h1 mat-dialog-title>{{ data.title }}</h1>
+  <div mat-dialog-content>
+    {{ data.message }}
+  </div>
+  <div class="buttons">
+    <button class="button confirm" [mat-dialog-close]="true">OK</button>
+  </div>
+</div>

@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 import { Horse } from 'src/app/core/models/horse';
 import { AuthService } from 'src/app/core/services/auth.service';
 import { HorseService } from 'src/app/core/services/horse.service';
+import { AlertComponent } from 'src/app/shared/dialog/alert/alert.component';
 
 @Component({
   selector: 'app-race',
@@ -22,20 +24,35 @@ export class RaceComponent implements OnInit {
 
   gameStatus: number = 0;
   isGameOver: boolean = false;
-  isWinner: boolean = false;
+  winner: string = '';
 
   constructor(
     private authService: AuthService,
-    private horseService: HorseService
+    private horseService: HorseService,
+    private dialog: MatDialog
   ) {}
 
   ngOnInit(): void {
-    console.log(this.selectedHorse);
     this.horseService
       .getUserHorses(this.authService.currentUser.uid)
-      .subscribe((horses) => {
-        this.playerHorses = horses;
+      .subscribe({
+        next: (horses) => {
+          this.playerHorses = horses;
+        },
+        error: (err) => {
+          this.dialog.open(AlertComponent, {
+            data: {
+              title: 'ERROR',
+              message: err.message,
+              color: 'red',
+            },
+          });
+        },
       });
+  }
+
+  selectHorse(horse: Horse): void {
+    this.selectedHorse = horse;
   }
 
   startRace() {
@@ -51,26 +68,12 @@ export class RaceComponent implements OnInit {
         this.playerPts >= this.trackLength ||
         this.botPts >= this.trackLength
       ) {
-        this.isWinner = this.playerPts > this.botPts ? true : false;
-        this.isGameOver = true;
         this.gameStatus = 2;
+        this.isGameOver = true;
+        this.winner = this.playerPts > this.botPts ? 'player' : 'bot';
         clearInterval(raceInterval);
       }
     }, this.raceIntervalMs);
-  }
-
-  restartRace() {
-    if (!this.isGameOver) {
-      return;
-    }
-    this.isGameOver = false;
-    this.gameStatus = 0;
-    this.botPts = 0;
-    this.playerPts = 0;
-  }
-
-  selectHorse(horse: Horse): void {
-    this.selectedHorse = horse;
   }
 
   moveHorses() {
@@ -79,5 +82,15 @@ export class RaceComponent implements OnInit {
 
     this.playerPts += randomFactorPlayer + this.moveConstant;
     this.botPts += randomFactorBot + this.moveConstant;
+  }
+
+  restartRace() {
+    if (!this.isGameOver) {
+      return;
+    }
+    this.isGameOver = false;
+    this.gameStatus = 0;
+    this.playerPts = 0;
+    this.botPts = 0;
   }
 }

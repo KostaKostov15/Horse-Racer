@@ -19,9 +19,10 @@ import { environment } from '../environments/environment';
 
 import { ErrorStateMatcher } from '@angular/material/core';
 import { MyMaterialModule } from './shared/material.module';
+import { AlertComponent } from './shared/dialog/alert/alert.component';
 
 @NgModule({
-  declarations: [AppComponent],
+  declarations: [AppComponent, AlertComponent],
   imports: [
     MyMaterialModule,
     BrowserModule,

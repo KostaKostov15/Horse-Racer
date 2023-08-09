@@ -6,6 +6,8 @@ import {
 } from '@angular/fire/compat/firestore';
 import { Router } from '@angular/router';
 import { User } from '../models/user';
+import { MatDialog } from '@angular/material/dialog';
+import { AlertComponent } from 'src/app/shared/dialog/alert/alert.component';
 
 @Injectable({
   providedIn: 'root',
@@ -16,7 +18,8 @@ export class AuthService {
   constructor(
     private afAuth: AngularFireAuth,
     private afStore: AngularFirestore,
-    private router: Router
+    private router: Router,
+    private dialog: MatDialog
   ) {
     this.afAuth.authState.subscribe((user) => {
       if (user) {
@@ -52,7 +55,13 @@ export class AuthService {
         });
       })
       .catch((err) => {
-        window.alert(err.message);
+        this.dialog.open(AlertComponent, {
+          data: {
+            title: 'ERROR',
+            message: err.message,
+            color: 'red',
+          },
+        });
       });
   }
 
@@ -65,7 +74,13 @@ export class AuthService {
         this.setUserData(result.user);
       })
       .catch((err) => {
-        window.alert(err.message);
+        this.dialog.open(AlertComponent, {
+          data: {
+            title: 'ERROR',
+            message: err.message,
+            color: 'red',
+          },
+        });
       });
   }
 
@@ -77,7 +92,13 @@ export class AuthService {
         this.router.navigate(['/user/login']);
       },
       (err) => {
-        window.alert(err.message);
+        this.dialog.open(AlertComponent, {
+          data: {
+            title: 'ERROR',
+            message: err.message,
+            color: 'red',
+          },
+        });
       }
     );
   }
@@ -100,7 +121,13 @@ export class AuthService {
           this.setUserData(user);
         })
         .catch((err) => {
-          window.alert(err.message);
+          this.dialog.open(AlertComponent, {
+            data: {
+              title: 'ERROR',
+              message: err.message,
+              color: 'red',
+            },
+          });
         });
     });
   }
@@ -115,7 +142,13 @@ export class AuthService {
           this.setUserData(user);
         })
         .catch((err) => {
-          window.alert(err.message);
+          this.dialog.open(AlertComponent, {
+            data: {
+              title: 'ERROR',
+              message: err.message,
+              color: 'red',
+            },
+          });
         });
     });
   }

@@ -1,0 +1,39 @@
+.container {
+  font-family: Inter, sans-serif;
+  color: grey;
+
+  h1 {
+    font-family: Sora, sans-serif;
+    text-align: center;
+  }
+  .mat-dialog-content {
+    padding: 5px 50px;
+    margin-bottom: 20px;
+  }
+
+  .buttons {
+    display: flex;
+    justify-content: center;
+  }
+
+  .button {
+    margin: 10px 30px;
+    height: 2.75rem;
+    line-height: 2rem;
+    padding: 0px 1.5rem;
+    font-family: Sora, sans-serif;
+    font-weight: 400;
+    font-size: 1em;
+    color: grey;
+    background-color: transparent;
+    border: 3px solid #8d9b9f;
+    border-radius: 2rem;
+    vertical-align: middle;
+    text-decoration: none;
+  }
+
+  .confirm:hover {
+    color: limegreen;
+    border-color: limegreen;
+  }
+}
