@@ -153,6 +153,10 @@ export class AuthService {
     });
   }
 
+  getUserById(userId: string) {
+    return this.afStore.collection('user').doc(userId).valueChanges();
+  }
+
   setUserData(user: any) {
     const userRef: AngularFirestoreDocument<any> = this.afStore.doc(
       `users/${user.uid}`
