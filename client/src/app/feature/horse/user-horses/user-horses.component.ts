@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { Observable, map, tap } from 'rxjs';
+import { MatDialog } from '@angular/material/dialog';
 import { Horse } from 'src/app/core/models/horse';
 import { AuthService } from 'src/app/core/services/auth.service';
 import { HorseService } from 'src/app/core/services/horse.service';
+import { AlertComponent } from 'src/app/shared/dialog/alert/alert.component';
 
 @Component({
   selector: 'app-user-horses',
@@ -10,18 +11,48 @@ import { HorseService } from 'src/app/core/services/horse.service';
   styleUrls: ['./user-horses.component.scss'],
 })
 export class UserHorsesComponent implements OnInit {
+  dialogResult: string;
   userHorses: Horse[] = [];
+  displayedColumns: string[] = [
+    'racingNumber',
+    'horseName',
+    'level',
+    'wins',
+    'delete',
+  ];
 
   constructor(
     private horseService: HorseService,
-    private authService: AuthService
+    private authService: AuthService,
+    private dialog: MatDialog
   ) {}
 
   ngOnInit(): void {
     this.horseService
       .getUserHorses(this.authService.currentUser.uid)
-      .subscribe((horses) => {
-        this.userHorses = horses;
+      .subscribe({
+        next: (horses) => {
+          this.userHorses = horses.sort((a, b) => b.wins - a.wins);
+        },
+        error: (err) => {
+          this.dialog.open(AlertComponent, {
+            data: {
+              title: 'ERROR',
+              message: err.message,
+              color: 'red',
+            },
+          });
+        },
       });
+  }
+
+  deleteHorse(horse: Horse | any) {
+    const choice = confirm(
+      `Are you sure you want to delete ${horse.horseName}`
+    );
+
+    if (choice) {
+      this.horseService.deleteHorse(horse.id);
+    }
   }
 }

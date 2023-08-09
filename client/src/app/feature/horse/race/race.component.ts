@@ -53,7 +53,6 @@ export class RaceComponent implements OnInit {
 
   selectHorse(horse: Horse): void {
     this.selectedHorse = horse;
-    console.log(this.selectedHorse);
   }
 
   startRace() {

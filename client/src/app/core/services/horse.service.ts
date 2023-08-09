@@ -36,4 +36,8 @@ export class HorseService {
   updateHorse(horseId: string, horseData: any) {
     return this.afs.collection('horses').doc(horseId).update(horseData);
   }
+
+  deleteHorse(horseId: string) {
+    return this.afs.collection('horses').doc(horseId).delete();
+  }
 }
