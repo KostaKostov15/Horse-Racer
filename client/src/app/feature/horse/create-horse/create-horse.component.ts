@@ -27,7 +27,11 @@ export class CreateHorseComponent {
 
     const user = this.authService.userData;
 
-    const { horseName, racingNumber, description } = form.value;
+    let { horseName, racingNumber, description } = form.value;
+
+    horseName = horseName.trim();
+    racingNumber = racingNumber.trim();
+    description = description.trim();
 
     const horseData: Horse = {
       horseName,

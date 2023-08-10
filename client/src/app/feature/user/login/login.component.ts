@@ -35,7 +35,7 @@ export class LoginComponent {
 
     this.isBtnDisabled = true;
     this.loaderService.setLoading(true);
-    this.authService.login(email!, password!).then(() => {
+    this.authService.login(email!.trim(), password!.trim()).then(() => {
       this.isBtnDisabled = false;
       this.loaderService.setLoading(false);
     });

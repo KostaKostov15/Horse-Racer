@@ -15,10 +15,11 @@ export class RaceComponent implements OnInit {
   raceIntervalMs: number = 40;
   moveConstant: number = 1;
   randomInfluence: number = 5;
-  levelInfluence: number = 0.035;
+  levelInfluence: number = 0.05;
 
   playerHorses: Horse[] = [];
   selectedHorse: Horse | any;
+
   playerPts: number = 0;
   botPts: number = 0;
 
@@ -81,7 +82,8 @@ export class RaceComponent implements OnInit {
     const randomFactorPlayer = this.randomInfluence * Math.round(Math.random());
     const randomFactorBot = this.randomInfluence * Math.round(Math.random());
 
-    this.playerPts += randomFactorPlayer + this.moveConstant;
+    this.playerPts +=
+      randomFactorPlayer + this.moveConstant + this.levelInfluence;
     this.botPts += randomFactorBot + this.moveConstant;
   }
 
@@ -102,11 +104,7 @@ export class RaceComponent implements OnInit {
       this.selectedHorse.level = this.selectedHorse.wins / 5;
     }
 
-    this.horseService
-      .updateHorse(this.selectedHorse?.id, this.selectedHorse)
-      .then((res) => {
-        this.selectedHorse = res;
-      });
+    this.horseService.updateHorse(this.selectedHorse.id, this.selectedHorse);
   }
 
   announceWinner() {

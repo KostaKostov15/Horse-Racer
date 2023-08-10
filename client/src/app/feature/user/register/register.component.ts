@@ -44,7 +44,7 @@ export class RegisterComponent {
     this.isBtnDisabled = true;
     this.loaderService.setLoading(true);
 
-    this.authService.register(email!, password!).then(() => {
+    this.authService.register(email!.trim(), password!.trim()).then(() => {
       this.isBtnDisabled = false;
       this.loaderService.setLoading(false);
     });

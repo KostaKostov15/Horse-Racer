@@ -27,7 +27,7 @@ export class ProfileComponent {
       return;
     }
 
-    displayName && this.authService.updateDisplayName(displayName);
+    displayName && this.authService.updateDisplayName(displayName.trim());
     photoURL && this.authService.updatePhotoUrl(photoURL);
     this.isEditMode = !this.isEditMode;
   }

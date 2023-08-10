@@ -9,7 +9,9 @@
             color="primary"
             (click)="selectHorse(horse)"
           >
-            {{ horse.racingNumber }} | {{ horse.horseName }} [{{ horse.level }}]
+            No.{{ horse.racingNumber }} | {{ horse.horseName }} | level [{{
+              horse.level
+            }}]
           </button>
         </mat-list-item>
       </mat-list>
