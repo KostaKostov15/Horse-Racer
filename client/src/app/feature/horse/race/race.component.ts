@@ -33,6 +33,7 @@ export class RaceComponent implements OnInit {
     private dialog: MatDialog
   ) {}
 
+  // Get all horses for the currently logged user
   ngOnInit(): void {
     this.horseService
       .getUserHorses(this.authService.currentUser.uid)
@@ -61,6 +62,7 @@ export class RaceComponent implements OnInit {
       return;
     }
 
+    // status 1 => game is running
     this.gameStatus = 1;
     let raceInterval = setInterval(() => {
       this.moveHorses();
@@ -69,6 +71,7 @@ export class RaceComponent implements OnInit {
         this.playerPts >= this.trackLength ||
         this.botPts >= this.trackLength
       ) {
+        // status 2 => game is over
         this.gameStatus = 2;
         this.isGameOver = true;
         this.winner = this.playerPts > this.botPts ? 'player' : 'bot';
@@ -82,17 +85,25 @@ export class RaceComponent implements OnInit {
     const randomFactorPlayer = this.randomInfluence * Math.round(Math.random());
     const randomFactorBot = this.randomInfluence * Math.round(Math.random());
 
+    const levelFactorPlayer = this.levelInfluence * this.selectedHorse.level;
+    const botFactorPlayer =
+      this.levelInfluence * (this.selectedHorse.level + 1);
+
+    // player move points => move constant + random factor + level factor
     this.playerPts +=
-      randomFactorPlayer + this.moveConstant + this.levelInfluence;
-    this.botPts += randomFactorBot + this.moveConstant;
+      this.moveConstant + randomFactorPlayer + levelFactorPlayer;
+
+    // bot move points => move constant + random factor + (user level: +1)
+    this.botPts += this.moveConstant + randomFactorBot + botFactorPlayer;
   }
 
   restartRace() {
     if (!this.isGameOver) {
       return;
     }
-    this.isGameOver = false;
+    // status 0 => game is ready to be started
     this.gameStatus = 0;
+    this.isGameOver = false;
     this.playerPts = 0;
     this.botPts = 0;
   }
@@ -100,6 +111,7 @@ export class RaceComponent implements OnInit {
   addWin() {
     this.selectedHorse.wins++;
 
+    // On every 5 wins => +1 level
     if (this.selectedHorse.wins % 5 == 0) {
       this.selectedHorse.level = this.selectedHorse.wins / 5;
     }
