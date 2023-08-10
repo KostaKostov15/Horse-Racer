@@ -20,6 +20,7 @@ export class UserHorsesComponent implements OnInit {
     'horseName',
     'level',
     'wins',
+    'description',
     'delete',
   ];
 

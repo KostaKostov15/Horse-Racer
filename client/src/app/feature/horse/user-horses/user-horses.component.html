@@ -34,8 +34,13 @@
       <td mat-cell *matCellDef="let horse">{{ horse.wins }}</td>
     </ng-container>
 
+    <ng-container matColumnDef="description">
+      <th mat-header-cell *matHeaderCellDef>Description</th>
+      <td mat-cell *matCellDef="let horse">{{ horse.description }}</td>
+    </ng-container>
+
     <ng-container matColumnDef="delete">
-      <th mat-header-cell *matHeaderCellDef>Remove</th>
+      <th mat-header-cell *matHeaderCellDef>Action</th>
       <td mat-cell *matCellDef="let horse">
         <button (click)="deleteHorse(horse)" mat-raised-button color="warn">
           delete

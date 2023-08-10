@@ -70,7 +70,7 @@
       </div>
       <mat-card-actions>
         <button
-          [disabled]="isGameOver"
+          [disabled]="isGameOver || gameStatus == 1"
           mat-raised-button
           color="accent"
           (click)="startRace()"
