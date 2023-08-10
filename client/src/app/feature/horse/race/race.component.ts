@@ -104,7 +104,17 @@ export class RaceComponent implements OnInit {
       this.selectedHorse.level = this.selectedHorse.wins / 5;
     }
 
-    this.horseService.updateHorse(this.selectedHorse.id, this.selectedHorse);
+    this.horseService
+      .updateHorse(this.selectedHorse.id, this.selectedHorse)
+      .catch((err) => {
+        this.dialog.open(AlertComponent, {
+          data: {
+            title: 'ERROR',
+            message: err.message,
+            color: 'red',
+          },
+        });
+      });
   }
 
   announceWinner() {

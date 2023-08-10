@@ -1,0 +1,20 @@
+table {
+  width: 100%;
+}
+
+h1 {
+  margin-top: 20px;
+  margin-left: 40%;
+  min-height: 40px;
+  font-size: 40px;
+  font-weight: 600;
+  background-image: linear-gradient(to left, #300a9b, #1d9ed1);
+  color: transparent;
+  background-clip: text;
+  -webkit-background-clip: text;
+}
+
+.leaderboard {
+  font-size: 40px;
+  font-weight: 600;
+}

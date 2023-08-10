@@ -8,6 +8,7 @@ import { Router } from '@angular/router';
 import { User } from '../models/user';
 import { MatDialog } from '@angular/material/dialog';
 import { AlertComponent } from 'src/app/shared/dialog/alert/alert.component';
+import { Observable, map } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
@@ -151,10 +152,6 @@ export class AuthService {
           });
         });
     });
-  }
-
-  getUserById(userId: string) {
-    return this.afStore.collection('user').doc(userId).valueChanges();
   }
 
   setUserData(user: any) {

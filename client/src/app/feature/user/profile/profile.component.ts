@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { NgForm } from '@angular/forms';
+import { MatDialog } from '@angular/material/dialog';
 import { AuthService } from 'src/app/core/services/auth.service';
+import { AlertComponent } from 'src/app/shared/dialog/alert/alert.component';
 
 @Component({
   selector: 'app-profile',
@@ -10,7 +12,7 @@ import { AuthService } from 'src/app/core/services/auth.service';
 export class ProfileComponent {
   isEditMode: boolean = false;
 
-  constructor(private authService: AuthService) {}
+  constructor(private authService: AuthService, private dialog: MatDialog) {}
 
   get userData() {
     return this.authService.userData;
@@ -27,8 +29,30 @@ export class ProfileComponent {
       return;
     }
 
-    displayName && this.authService.updateDisplayName(displayName.trim());
-    photoURL && this.authService.updatePhotoUrl(photoURL);
+    // Update user's displayName
+    displayName &&
+      this.authService.updateDisplayName(displayName.trim()).catch((err) => {
+        this.dialog.open(AlertComponent, {
+          data: {
+            title: 'ERROR',
+            message: err.message,
+            color: 'red',
+          },
+        });
+      });
+
+    //Update user's photoURL
+    photoURL &&
+      this.authService.updatePhotoUrl(photoURL).catch((err) => {
+        this.dialog.open(AlertComponent, {
+          data: {
+            title: 'ERROR',
+            message: err.message,
+            color: 'red',
+          },
+        });
+      });
+
     this.isEditMode = !this.isEditMode;
   }
 

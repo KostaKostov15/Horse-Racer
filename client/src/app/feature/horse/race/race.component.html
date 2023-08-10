@@ -2,7 +2,15 @@
   <div *ngIf="!selectedHorse">
     <mat-card-title>Choose A Horse</mat-card-title>
     <mat-card-content>
-      <mat-list role="list">
+      <div *ngIf="playerHorses.length == 0">
+        <h1>
+          No horses yet, click to
+          <a mat-raised-button color="accent" routerLink="/horse/create"
+            >Create Horse</a
+          >
+        </h1>
+      </div>
+      <mat-list role="list" *ngIf="playerHorses.length > 0">
         <mat-list-item role="list-item" *ngFor="let horse of playerHorses">
           <button
             mat-raised-button

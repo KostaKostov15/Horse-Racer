@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
+import { map } from 'rxjs';
 import { Horse } from 'src/app/core/models/horse';
 import { User } from 'src/app/core/models/user';
 import { AuthService } from 'src/app/core/services/auth.service';
@@ -13,13 +14,15 @@ import { AlertComponent } from 'src/app/shared/dialog/alert/alert.component';
 })
 export class LeaderboardComponent implements OnInit {
   horsesData: Horse[] = [];
-  displayedColumns: string[] = ['racingNumber', 'horseName', 'level', 'wins'];
+  displayedColumns: string[] = [
+    'ownerEmail',
+    'horseName',
+    'racingNumber',
+    'level',
+    'wins',
+  ];
 
-  constructor(
-    private horseService: HorseService,
-    private dialog: MatDialog,
-    private authService: AuthService
-  ) {}
+  constructor(private horseService: HorseService, private dialog: MatDialog) {}
 
   ngOnInit(): void {
     this.horseService.getHorses().subscribe({

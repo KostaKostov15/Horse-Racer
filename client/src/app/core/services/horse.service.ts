@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
+import { getAuth } from 'firebase/auth';
 
 import { Observable, map } from 'rxjs';
 import { Horse } from '../models/horse';
@@ -16,7 +17,7 @@ export class HorseService {
 
   getUserHorses(userId: string): Observable<Horse[]> {
     return this.afs
-      .collection<Horse>('horses', (ref) => ref.where('owner', '==', userId))
+      .collection<Horse>('horses', (ref) => ref.where('ownerId', '==', userId))
       .snapshotChanges()
       .pipe(
         map((actions) => {

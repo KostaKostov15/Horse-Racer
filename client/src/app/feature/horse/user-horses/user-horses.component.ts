@@ -55,7 +55,15 @@ export class UserHorsesComponent implements OnInit {
     );
 
     if (choice) {
-      this.horseService.deleteHorse(horse.id);
+      this.horseService.deleteHorse(horse.id).catch((err) => {
+        this.dialog.open(AlertComponent, {
+          data: {
+            title: 'ERROR',
+            message: err.message,
+            color: 'red',
+          },
+        });
+      });
     }
   }
 }
