@@ -17,6 +17,8 @@ mat-card-title,
 mat-card-content {
   display: flex;
   justify-content: center;
+  font-style: italic;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
 
 mat-card-title {
@@ -29,6 +31,11 @@ mat-card-subtitle {
   font-size: 25px;
   margin-bottom: 20px;
   margin-top: 20px;
+}
+
+.logo {
+  max-width: 40px;
+  max-height: 40px;
 }
 
 // .background-img {
