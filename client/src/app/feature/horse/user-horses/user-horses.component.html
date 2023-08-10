@@ -1,6 +1,14 @@
-<div>
-  <h1>{{ this.user.email }} | horses</h1>
+<div *ngIf="this.userHorses.length == 0">
+  <h1>
+    No horses yet, click to
+    <a mat-raised-button color="accent" routerLink="/horse/create"
+      >Create Horse</a
+    >
+  </h1>
+</div>
 
+<div *ngIf="this.userHorses.length > 0">
+  <h1>{{ this.user.email }} | horses</h1>
   <table
     mat-table
     [dataSource]="this.userHorses"
