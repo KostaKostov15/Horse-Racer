@@ -4,7 +4,7 @@
   </h1>
   <table
     mat-table
-    [dataSource]="this.horsesData"
+    [dataSource]="dataSource"
     class="mat-elevation-z8 user-horses"
   >
     <ng-container matColumnDef="ownerEmail">
@@ -35,4 +35,12 @@
     <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
     <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
   </table>
+
+  <mat-paginator
+    #leaderboardPaginator
+    [pageSizeOptions]="[5, 10, 20]"
+    showFirstLastButtons
+    aria-label="Select page"
+  >
+  </mat-paginator>
 </div>

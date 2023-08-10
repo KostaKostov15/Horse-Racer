@@ -10,17 +10,17 @@ import { LeaderboardComponent } from './leaderboard/leaderboard.component';
 
 @NgModule({
   declarations: [
+    LeaderboardComponent,
     CreateHorseComponent,
     UserHorsesComponent,
     RaceComponent,
-    LeaderboardComponent,
   ],
   imports: [CommonModule, MyMaterialModule, HorseRoutingModule, FormsModule],
   exports: [
+    LeaderboardComponent,
     CreateHorseComponent,
     UserHorsesComponent,
     RaceComponent,
-    LeaderboardComponent,
   ],
 })
 export class HorseModule {}

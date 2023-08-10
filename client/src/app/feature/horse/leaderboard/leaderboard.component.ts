@@ -1,9 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
-import { map } from 'rxjs';
+import { MatPaginator } from '@angular/material/paginator';
+import { MatTableDataSource } from '@angular/material/table';
 import { Horse } from 'src/app/core/models/horse';
-import { User } from 'src/app/core/models/user';
-import { AuthService } from 'src/app/core/services/auth.service';
 import { HorseService } from 'src/app/core/services/horse.service';
 import { AlertComponent } from 'src/app/shared/dialog/alert/alert.component';
 
@@ -14,6 +13,8 @@ import { AlertComponent } from 'src/app/shared/dialog/alert/alert.component';
 })
 export class LeaderboardComponent implements OnInit {
   horsesData: Horse[] = [];
+  dataSource: MatTableDataSource<Horse>;
+
   displayedColumns: string[] = [
     'ownerEmail',
     'horseName',
@@ -22,12 +23,16 @@ export class LeaderboardComponent implements OnInit {
     'wins',
   ];
 
+  @ViewChild('leaderboardPaginator') paginator: MatPaginator;
+
   constructor(private horseService: HorseService, private dialog: MatDialog) {}
 
   ngOnInit(): void {
     this.horseService.getHorses().subscribe({
       next: (horses) => {
-        this.horsesData = horses.sort((a, b) => b.wins - a.wins);
+        // this.horsesData = horses.sort((a, b) => b.wins - a.wins);
+        this.dataSource = new MatTableDataSource<Horse>(horses);
+        this.dataSource.paginator = this.paginator;
       },
       error: (err) => {
         this.dialog.open(AlertComponent, {
