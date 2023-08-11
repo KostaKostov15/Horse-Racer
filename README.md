@@ -24,11 +24,9 @@ npm install
 `** 
 To install all dependencies
 
-
 **`
 ng serve
 `**
 To run the project
-
 
 App starts on: http://localhost:4200/
