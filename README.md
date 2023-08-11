@@ -18,10 +18,10 @@ The application main purpose is to emulate the experience of horse racing. It is
 ## Setup and Usage
 To run the game in client side view, download the code from the repository and inside [client dir](https://github.com/KostaKostov15/Horse-Racer/tree/main/client).
 Run the following commands in terminal:
+
 **`
 npm install
 `**
-
 **`
 ng serve
 `**
