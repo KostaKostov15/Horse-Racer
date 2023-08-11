@@ -12,5 +12,5 @@ The application main purpose is to emulate the experience of horse racing. It is
 ## Technical Stack
 
 - Database: Firestore - [docs](https://firebase.google.com/docs/firestore),
-- Front-End: Angular - [docs](https://angular.io/docs).
-- Hosting: Firebase - [docs](https://firebase.google.com/docs/hosting)
+- Front-End: Angular - [docs](https://angular.io/docs),
+- Hosting: Firebase - [docs](https://firebase.google.com/docs/hosting),
