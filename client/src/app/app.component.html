@@ -1,13 +1,16 @@
 <body [ngClass]="{ 'dark-theme': isDarkTheme | async }">
   <app-header></app-header>
+
   <mat-drawer-container class="app-container">
     <mat-drawer mode="side" [opened]="isSidebarOpen | async">
       <app-sidebar fxLayout="column"></app-sidebar>
     </mat-drawer>
+
     <mat-drawer-content fxFlex>
       <router-outlet></router-outlet>
       <app-spinner></app-spinner>
     </mat-drawer-content>
   </mat-drawer-container>
+
   <app-footer fxFlexOffset="auto"></app-footer>
 </body>
